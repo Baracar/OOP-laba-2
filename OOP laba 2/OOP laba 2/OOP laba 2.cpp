@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -65,7 +66,7 @@ public:
 
 class animal: public life {
 protected:
-    int moveSpeed;
+    int moveSpeed; //животные двигаются
 
 public:
     int moveSpeedGet() {
@@ -103,7 +104,7 @@ public:
 
 class plant : public life {
 protected:
-    int dertp;
+    int dertp;  // растения растут ещё и вглубь
 
 public:
     int dertpGet() {
@@ -140,29 +141,78 @@ void status() override {
     }
 };
 
-class cat : public animal {
+class collar {
+    string color;
+
 public:
-    void mew() {
-        cout << "Мяу" << endl;
+    collar() {
+        color = "none";
     }
 
-    cat() :animal() {
-        cout << "cat создан" << endl;
+    collar(string a) {
+        color = a;
     }
 
-    cat(int _weight, int _height, int _moveSpeed) :animal(_weight, _height, _moveSpeed) {
-        cout << "cat создан" << endl;
+    collar(collar* a) {
+        color = a->color;
     }
 
-    cat(cat* a) :animal(a) {
-        cout << "cat создан" << endl;
+    ~collar() {
+        cout << "collar уничтожен" << endl;
     }
 };
+
+class dog : public animal {
+    collar* col;
+public:
+    void bark();
+
+    dog() :animal() {
+        col = new collar();
+        cout << "dog создан" << endl;
+    }
+
+    dog(int _weight, int _height, int _moveSpeed) :animal(_weight, _height, _moveSpeed) {
+        col = new collar();
+        cout << "dog создан" << endl;
+    }
+
+    dog(dog* a) :animal(a) {
+        col = new collar();
+        cout << "dog создан" << endl;
+    }
+
+    dog(int _weight, int _height, int _moveSpeed, collar* _col) :animal(_weight, _height, _moveSpeed) {
+        col = new collar(_col);
+        cout << "dog создан" << endl;
+    }
+
+    dog(dog* a, collar* _col) :animal(a) {
+        col = new collar(_col);
+        cout << "dog создан" << endl;
+    }
+
+    ~dog() {
+        delete col;
+        cout << "dog уничтожен" << endl;
+    }
+};
+
+void dog:: bark() {                         //реализация метода после определения
+    cout << "Ав-ав-ав" << endl;
+}
 
 int main()
 {
     cout << boolalpha;
     setlocale(LC_ALL, "Russian");
+
+    life d{10, 20};
+    d.status();
+    d.kill();
+    d.heightSet(40);
+    d.weightSet(777);
+    d.status();
 
     life* a = new animal(10, 20, 51);
     a->status();
