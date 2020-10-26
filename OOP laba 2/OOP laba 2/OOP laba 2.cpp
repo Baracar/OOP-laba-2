@@ -12,6 +12,10 @@ public:
     virtual void status() {
         cout << "Живое - " << alive << endl << "Вес - " << weight << endl << "Рост - " << height << endl;
     }
+
+    void kill() {
+        alive = false;
+    }
     
     life() {
         alive = true;
@@ -69,6 +73,36 @@ public:
     }
 };
 
+class plant : public life {
+protected:
+    int dertp;
+
+public:
+    void status() override {
+        life::status();
+        cout << "Глубина корней - " << dertp << endl;
+    }
+
+    plant():life() {
+        dertp = 0;
+        cout << "plant создан" << endl;
+    }
+    
+    plant(int _weight, int _height, int _derpt) : life(_weight, _height) {
+        dertp = _derpt;
+        cout << "plant создан" << endl;
+    }
+
+    plant(plant* a) : life(a) {
+        dertp = a->dertp;
+        cout << "plant создан" << endl;
+    }
+
+    ~plant() {
+        cout << "plant уничтожен" << endl;
+    }
+};
+
 int main()
 {
     cout << boolalpha;
@@ -80,6 +114,10 @@ int main()
     animal* b = new animal((animal*)a);
     b->status();
 
+    plant* c = new plant(24, 52, 532);
+    c->status();
+
     delete a;
     delete b;
+    delete c;
 }
