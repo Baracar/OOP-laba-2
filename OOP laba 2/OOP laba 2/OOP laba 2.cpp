@@ -16,6 +16,26 @@ public:
     void kill() {
         alive = false;
     }
+
+    int weightGet() {
+        return weight;
+    }
+    void weightSet(int val) {
+        if(val >=0)
+            weight = val;
+    }
+
+    int heightGet() {
+        return height;
+    }
+    void heightSet(int val) {
+        if (val >= 0)
+        height = val;
+    }
+
+    bool isAlive() {
+        return alive;
+    }
     
     life() {
         alive = true;
@@ -48,6 +68,14 @@ protected:
     int moveSpeed;
 
 public:
+    int moveSpeedGet() {
+        return moveSpeed;
+    }
+    void moveSpeedSet(int val){
+        if (val >= 0)
+        moveSpeed = val;
+    }
+
     void status() override {
         life::status();
         cout << "Скорость - " << moveSpeed << endl;
@@ -78,11 +106,20 @@ protected:
     int dertp;
 
 public:
-    void status() override {
+    int dertpGet() {
+        return dertp;
+    }
+    void dertpSet(int val) {
+        if (val >= 0)
+        dertp = val;
+    }
+
+void status() override {
         life::status();
         cout << "Глубина корней - " << dertp << endl;
     }
 
+    
     plant():life() {
         dertp = 0;
         cout << "plant создан" << endl;
@@ -100,6 +137,25 @@ public:
 
     ~plant() {
         cout << "plant уничтожен" << endl;
+    }
+};
+
+class cat : public animal {
+public:
+    void mew() {
+        cout << "Мяу" << endl;
+    }
+
+    cat() :animal() {
+        cout << "cat создан" << endl;
+    }
+
+    cat(int _weight, int _height, int _moveSpeed) :animal(_weight, _height, _moveSpeed) {
+        cout << "cat создан" << endl;
+    }
+
+    cat(cat* a) :animal(a) {
+        cout << "cat создан" << endl;
     }
 };
 
