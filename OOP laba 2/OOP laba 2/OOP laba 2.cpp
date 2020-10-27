@@ -145,6 +145,10 @@ class collar {
     string color;
 
 public:
+    void colInfo() {
+        cout << "Цвет ошейника - " << color << endl;
+    }
+
     collar() {
         color = "none";
     }
@@ -166,6 +170,11 @@ class dog : public animal {
     collar* col;
 public:
     void bark();
+
+    void status() override{
+        animal::status();
+        col->colInfo();
+    }
 
     dog() :animal() {
         col = new collar();
@@ -192,6 +201,16 @@ public:
         cout << "dog создан" << endl;
     }
 
+    dog(int _weight, int _height, int _moveSpeed, string _col) :animal(_weight, _height, _moveSpeed) {
+        col = new collar(_col);
+        cout << "dog создан" << endl;
+    }
+
+    dog(dog* a, string _col) :animal(a) {
+        col = new collar(_col);
+        cout << "dog создан" << endl;
+    }
+
     ~dog() {
         delete col;
         cout << "dog уничтожен" << endl;
@@ -213,17 +232,27 @@ int main()
     d.heightSet(40);
     d.weightSet(777);
     d.status();
-
-    life* a = new animal(10, 20, 51);
-    a->status();
-
-    animal* b = new animal((animal*)a);
-    b->status();
+    cout << endl;
 
     plant* c = new plant(24, 52, 532);
     c->status();
+    delete c;
+    cout << endl;
+
+    life* a = new animal(10, 20, 51);
+    a->status();
+    cout << endl;
+
+    animal* b = new animal((animal*)a);
+    b->status();
+    delete b;
+    cout << endl;
 
     delete a;
-    delete b;
-    delete c;
+    cout << endl;
+
+    dog* e = new dog(124, 32, 132, "красный");
+    e->status();
+    delete e;
+    cout << endl;
 }
