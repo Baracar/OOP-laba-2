@@ -103,63 +103,25 @@ protected:
     int dertp;  // растени€ растут ещЄ и вглубь
 
 public:
-    int dertpGet() {
-        return dertp;
-    }
-    void dertpSet(int val) {
-        if (val >= 0)
-            dertp = val;
-    }
-
-    void status() override {
-        life::status();
-        cout << "√лубина корней - " << dertp << endl;
-    }
-
-
-    plant() :life() {
-        dertp = 0;
-        cout << "plant создан" << endl;
-    }
-
-    plant(int _weight, int _height, int _derpt) : life(_weight, _height) {
-        dertp = _derpt;
-        cout << "plant создан" << endl;
-    }
-
-    plant(plant* a) : life(a) {
-        dertp = a->dertp;
-        cout << "plant создан" << endl;
-    }
-
-    ~plant() {
-        cout << "plant уничтожен" << endl;
-    }
+    int dertpGet();
+    void dertpSet(int val);
+    void status() override;
+    plant();
+    plant(int _weight, int _height, int _derpt);
+    plant(plant* a);
+    ~plant();
+    
 };
 
 class collar {
     string color;
 
 public:
-    void colInfo() {
-        cout << "÷вет ошейника - " << color << endl;
-    }
-
-    collar() {
-        color = "none";
-    }
-
-    collar(string a) {
-        color = a;
-    }
-
-    collar(collar* a) {
-        color = a->color;
-    }
-
-    ~collar() {
-        cout << "collar уничтожен" << endl;
-    }
+    void colInfo();
+    collar();
+    collar(string a);
+    collar(collar* a);
+    ~collar();
 };
 
 class dog : public animal {
@@ -167,49 +129,12 @@ class dog : public animal {
 public:
     void bark();
     void status() override;
-
-    void status() override {
-        animal::status();
-        col->colInfo();
-    }
-
-    dog() :animal() {
-        col = new collar();
-        cout << "dog создан" << endl;
-    }
-
-    dog(int _weight, int _height, int _moveSpeed) :animal(_weight, _height, _moveSpeed) {
-        col = new collar();
-        cout << "dog создан" << endl;
-    }
-
-    dog(dog* a) :animal(a) {
-        col = new collar();
-        cout << "dog создан" << endl;
-    }
-
-    dog(int _weight, int _height, int _moveSpeed, collar* _col) :animal(_weight, _height, _moveSpeed) {
-        col = new collar(_col);
-        cout << "dog создан" << endl;
-    }
-
-    dog(dog* a, collar* _col) :animal(a) {
-        col = new collar(_col);
-        cout << "dog создан" << endl;
-    }
-
-    dog(int _weight, int _height, int _moveSpeed, string _col) :animal(_weight, _height, _moveSpeed) {
-        col = new collar(_col);
-        cout << "dog создан" << endl;
-    }
-
-    dog(dog* a, string _col) :animal(a) {
-        col = new collar(_col);
-        cout << "dog создан" << endl;
-    }
-
-    ~dog() {
-        delete col;
-        cout << "dog уничтожен" << endl;
-    }
+    dog();
+    dog(int _weight, int _height, int _moveSpeed);
+    dog(dog* a);
+    dog(int _weight, int _height, int _moveSpeed, collar* _col);
+    dog(dog* a, collar* _col);
+    dog(int , int , int , string );
+    dog(dog* a, string _col);
+    ~dog();
 };

@@ -6,9 +6,6 @@ using namespace std;
 
 
 
-void dog:: bark() {                         //реализация метода после определения
-    cout << "Ав-ав-ав" << endl;
-}
 
 int main()
 {

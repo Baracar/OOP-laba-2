@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MyClasses.cpp" />
     <ClCompile Include="OOP laba 2.cpp" />
   </ItemGroup>
   <ItemGroup>
