@@ -1,4 +1,10 @@
 #pragma once
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
 class life {
 private:
     bool alive;
@@ -6,58 +12,18 @@ private:
     int height;
 
 public:
-    virtual void status() {
-        cout << "Живое - " << alive << endl << "Вес - " << weight << endl << "Рост - " << height << endl;
-    }
-
-    void kill() {
-        alive = false;
-    }
-
-    int weightGet() {
-        return weight;
-    }
-    void weightSet(int val) {
-        if (val >= 0)
-            weight = val;
-    }
-
-    int heightGet() {
-        return height;
-    }
-    void heightSet(int val) {
-        if (val >= 0)
-            height = val;
-    }
-
-    bool isAlive() {
-        return alive;
-    }
-
-    life() {
-        alive = true;
-        weight = 0;
-        height = 0;
-        cout << "life создан" << endl;
-    }
-
-    life(int _weight, int _height) {
-        alive = true;
-        weight = _weight;
-        height = _height;
-        cout << "life создан" << endl;
-    }
-
-    life(life* a) {
-        alive = a->alive;
-        weight = a->weight;
-        height = a->height;
-        cout << "life создан" << endl;
-    }
-
-    ~life() {
-        cout << "life уничтожен" << endl;
-    }
+    virtual void status();
+    bool isAlive();
+    void kill();
+    int weightGet();
+    void weightSet(int val);
+    int heightGet();
+    void heightSet(int val);
+    life();
+    life(int _weight, int _height);
+    life(life* a);
+    ~life();
+    
 };
 
 class animal : public life {
@@ -65,37 +31,14 @@ protected:
     int moveSpeed; //животные двигаются
 
 public:
-    int moveSpeedGet() {
-        return moveSpeed;
-    }
-    void moveSpeedSet(int val) {
-        if (val >= 0)
-            moveSpeed = val;
-    }
-
-    void status() override {
-        life::status();
-        cout << "Скорость - " << moveSpeed << endl;
-    }
-
-    animal() :life() {
-        moveSpeed = 0;
-        cout << "animal создан" << endl;
-    }
-
-    animal(int _weight, int _height, int _moveSpeed) :life(_weight, _height) {
-        moveSpeed = _moveSpeed;
-        cout << "animal создан" << endl;
-    }
-
-    animal(animal* a) :life(a) {
-        moveSpeed = a->moveSpeed;
-        cout << "animal создан" << endl;
-    }
-
-    ~animal() {
-        cout << "animal уничтожен" << endl;
-    }
+    int moveSpeedGet();
+    void moveSpeedSet(int val);
+    void status() override;
+    animal();
+    animal(int _weight, int _height, int _moveSpeed);
+    animal(animal* a);
+    ~animal();
+    
 };
 
 class plant : public life {
@@ -119,8 +62,8 @@ class collar {
 public:
     void colInfo();
     collar();
-    collar(string a);
-    collar(collar* a);
+    collar(string);
+    collar(collar*);
     ~collar();
 };
 

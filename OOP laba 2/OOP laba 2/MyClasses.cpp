@@ -4,7 +4,94 @@
 
 using namespace std;
 
+void life:: status() {
+    cout << "Живое - " << alive << endl << "Вес - " << weight << endl << "Рост - " << height << endl;
+}
 
+void life::kill() {
+    alive = false;
+}
+
+int life::weightGet() {
+    return weight;
+}
+void life::weightSet(int val) {
+    if (val >= 0)
+        weight = val;
+}
+
+int life::heightGet() {
+    return height;
+}
+void life::heightSet(int val) {
+    if (val >= 0)
+        height = val;
+}
+
+bool life::isAlive() {
+    return alive;
+}
+
+life::life() {
+    alive = true;
+    weight = 0;
+    height = 0;
+    cout << "life создан" << endl;
+}
+
+life::life(int _weight, int _height) {
+    alive = true;
+    weight = _weight;
+    height = _height;
+    cout << "life создан" << endl;
+}
+
+life::life(life* a) {
+    alive = a->alive;
+    weight = a->weight;
+    height = a->height;
+    cout << "life создан" << endl;
+}
+
+life:: ~life() {
+    cout << "life уничтожен" << endl;
+}
+
+//  Реализация animal
+
+int animal:: moveSpeedGet() {
+    return moveSpeed;
+}
+void animal::moveSpeedSet(int val) {
+    if (val >= 0)
+        moveSpeed = val;
+}
+
+void animal::status() {
+    life::status();
+    cout << "Скорость - " << moveSpeed << endl;
+}
+
+animal::animal() :life() {
+    moveSpeed = 0;
+    cout << "animal создан" << endl;
+}
+
+animal::animal(int _weight, int _height, int _moveSpeed) :life(_weight, _height) {
+    moveSpeed = _moveSpeed;
+    cout << "animal создан" << endl;
+}
+
+animal::animal(animal* a) :life(a) {
+    moveSpeed = a->moveSpeed;
+    cout << "animal создан" << endl;
+}
+
+animal::~animal() {
+    cout << "animal уничтожен" << endl;
+}
+
+//  Реализация plant
 
 int plant:: dertpGet() {
     return dertp;
